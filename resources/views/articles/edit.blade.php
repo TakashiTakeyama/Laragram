@@ -18,6 +18,5 @@
     <input type="submit" value="更新">
   </div>
   </form>
-<a href="/articles/{{$article->id}}/edit">編集する</a>
-<a href="/articles">一覧戻る</a>
+<a href="/articles">一覧へ戻る</a>
 @endsection

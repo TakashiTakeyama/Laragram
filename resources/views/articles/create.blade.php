@@ -14,8 +14,7 @@
     <textarea name="body" rows="8" cols="80" placeholder="記事の内容を入れる"></textarea>
   </div>
   <div>
-    <input type="hidden" name="_method" value="patch">
-    <input type="submit" value="更新">
+    <input type="submit" value="送信">
   </div>
   </form>
 @endsection
