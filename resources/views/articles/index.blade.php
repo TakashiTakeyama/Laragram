@@ -3,6 +3,11 @@
 @section('title', '記事一覧')
 
 @section('content')
+@if (Auth::check())
+<p>USER: {{$user->name . ' (' . $user->email . ')'}}<p>
+@else
+<p>※ログインしていません。(<a href="/login">ログイン</a> | <a href="/register">登録</a>)</p>
+@endif
 <div>
   <a href="/articles/create">新規作成</a>
 </div>
