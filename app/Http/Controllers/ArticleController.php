@@ -98,4 +98,25 @@ class ArticleController extends Controller
         $article->delete();
         return redirect('/articles');
     }
+
+    public function getAuth(Request $request)
+    {
+        $user = Auth::user();
+        $articles = Article::all();
+        return view('articles.index', ['articles' => $articles, 'user' => $user]);
+        $param = ['message' => 'ログインしてください。'];
+        return view('articles.index', $param, ['articles' => $articles, 'user' => $user]);
+    }
+
+    public function postAuth(Request $request)
+    {
+        $email = $request->password;
+        $password = $request->password;
+        if (Auth::attempt(['email' => $email, 'password' => $password])) {
+            $msg = 'ログインしました。(' . Auth::user()->name . ')';
+        } else {
+            $msg = 'ログインに失敗しました。';
+        }
+        return view('hello.auth', ['message' => $msg, 'articles' => $articles, 'user' => $user]);
+    }
 }
