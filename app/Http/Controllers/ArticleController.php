@@ -20,6 +20,12 @@ class ArticleController extends Controller
         return view('articles.index', ['articles' => $articles, 'user' => $user]);
     }
 
+    public function add (Request $request)
+    {
+        return view('article.add');
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -38,11 +44,16 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
+        // $article = new Article;
+        // $article->title = $request->title;
+        // $article->body = $request->body;
+        // $article->save();
+        // return redirect('/articles');
         $article = new Article;
-        $article->title = $request->title;
-        $article->body = $request->body;
-        $article->save();
-        return redirect('/articles');
+        $form = $request->all();
+        unset($form['_token']);
+        $article->fill($form)->save();
+        return view('articles.index');
     }
 
     /**
@@ -105,7 +116,7 @@ class ArticleController extends Controller
         $articles = Article::all();
         return view('articles.index', ['articles' => $articles, 'user' => $user]);
         $param = ['message' => 'ログインしてください。'];
-        return view('articles.index', $param, ['articles' => $articles, 'user' => $user]);
+        return view('articles.index', $param, []);
     }
 
     public function postAuth(Request $request)
