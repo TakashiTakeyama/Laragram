@@ -19,5 +19,7 @@ Route::resource('articles', 'ArticleController')->middleware('auth');
 Route::get('articles', 'ArticleController@getAuth');
 Route::post('articles', 'ArticleController@getAuth');
 Auth::routes();
+Route::get('articles/add', 'ArticleController@add');
+Route::post('articles/add', 'ArticleController@create');
 
 Route::get('/home', 'HomeController@index')->name('home');
